@@ -35,7 +35,7 @@ const pregunta = {
 }
 
 function imprimePregunta(pregunta) {
-  const newHTML = "";
+  let newHTML = "";
 
   newHTML += imprimeTitulo(pregunta);
   newHTML += imprimeTodasLasRespuestas(pregunta);
@@ -44,23 +44,41 @@ function imprimePregunta(pregunta) {
 }
 
 function imprimeTitulo(pregunta) {
-  // Put your code here
+  let titulo = `<section>
+                <p>${pregunta.titulo}</p>
+                </section>`
+  return titulo;
 }
 
 function imprimeTodasLasRespuestas(pregunta) {
-  // Put your code here
+  let resp = '';
+  for(let i= 0; i<pregunta.respuestas.length; i++){
+    resp += imprimeUnaRespuesta(pregunta.respuestas[i])
+  }
+  return resp;
 }
 
 function imprimeUnaRespuesta(respuesta) {
-  // Put your code here
+  let resp = '<section>'
+  resp += imprimeLabel(respuesta);
+  resp += imprimeInput(respuesta);
+  resp += '</section>'
+  
+  return resp;
 }
 
 function imprimeLabel(respuesta) {
-  // Put your code here
+  let label =`
+    <label for='${respuesta.id}'>--${respuesta.label}--</label>`
+
+  return label;
 }
 
 function imprimeInput(respuesta) {
-  // Put your code here
+  let input =`
+    <input type='radio' id='${respuesta.id}' name='${respuesta.name}' value='${respuesta.value}'>
+            `
+  return input;
 }
 
 document.getElementById("contenedorPreguntas").innerHTML = imprimePregunta(pregunta);
